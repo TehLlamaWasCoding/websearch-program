@@ -3,8 +3,8 @@ from simple_colors import *
 from termcolor import colored
 
 
-lpresets = {'youtube search' : '/results?search_query=',
-            'stack overflow search' : '/search?q='}
+lpresets = {'youtube search' : 'youtube.com/results?search_query=',
+            'stack overflow search' : 'stackoverflow.com/search?q='}
 
 
 def websearch():
@@ -24,7 +24,8 @@ def websearch():
                         2: A protocol is a standard set of rules that allow electronic devices to communicate with each other, in other words, if you dont insert a protocol at this stage, the program
                         will not work, do 'protohelp' if you want to choose a protocol, note: some protocols might not work for certain sites. 
 
-                        3: You can use already typed presets to make you're searching faster, you can choose to use then or not. 
+                        3: You can use already typed presets to make you're searching faster, you can choose to use then or not, no need to type the website url, it will be automatically be added with
+                        the protocol and search word. 
 
                         4: Insert the page url here, without the protocol since it (the protocol) will be added in the end, making the program work, dont forget the .com or .org, ect.
                         | ex: 'nameOfSite.com/org ect'. |
@@ -89,6 +90,7 @@ def websearch():
                             presetbypass = 0
                             presetchoosen = 0
                         if preset == 'y':
+                            global askprebypass
                             askprebypass = 0
                             while askprebypass == 0:
                                 listprint = [(key) for key in lpresets.keys()]
@@ -101,6 +103,7 @@ def websearch():
                                     presetchoosen = 0        
 
                                 elif askpre in lpresets.keys():
+                                    global textAskpre
                                     textAskpre = askpre
                                     #-
                                     global search
@@ -114,7 +117,8 @@ def websearch():
                                         search = input(colored('\n what do you want to search: ', 'magenta', attrs=['bold']))
 
                                     #-
-                                    print(colored(f' ✅ {textAskpre} chosen ✅', 'magenta', attrs=['dark']))
+                                    global values
+                                    global valuesList
                                     values = lpresets.values()
                                     valuesList = list(values)
                                     global addPreset
@@ -126,6 +130,7 @@ def websearch():
 
                         elif preset == 'n':
                             print(colored(' ✅ no preset chosen ✅', 'green'))
+                            textAskpre = ''
                             addPreset = ''
                             search = ''
                             presetbypass = 1
@@ -140,15 +145,31 @@ def websearch():
                              
 
                 presets()
+                def autho():
+                    def pagexe():
+                        global page
+                        page = input(colored('\n page url: ', 'yellow', attrs=['bold']))
 
+                    if textAskpre not in lpresets.keys():
+                        pagexe()
+
+                    if textAskpre in lpresets.keys():
+                        global page
+                        page = valuesList[askpre]
+                        global addPreset
+                        addPreset = ''
+                        print(colored(' you have chosen ', 'cyan') + colored(f'{textAskpre}', 'red', attrs=['bold', 'underline']))
+
+                autho()
                 
-                global page
-                page = input(colored('\n page url: ', 'yellow', attrs=['bold']))
-            else:
-                protobypass = 0
-                pass
+
         webbrowser.open(str(protocol + page + addPreset + search))
-        print(colored('✅ program executed successfully ✅', 'green' , attrs= ['bold']))
+
+        def endsff():
+            print(colored(f'\n ----------- \n checking... \n -----------', 'magenta', attrs=['dark', 'bold']))
+            print(colored('\n ✅ program executed successfully ✅', 'green' , attrs= ['bold']))
+        
+        endsff()
 
     protoweb()
 
