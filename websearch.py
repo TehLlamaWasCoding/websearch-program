@@ -145,6 +145,7 @@ def websearch():
                              
 
                 presets()
+
                 def autho():
                     def pagexe():
                         global page
@@ -159,14 +160,14 @@ def websearch():
                         global addPreset
                         addPreset = ''
                         print(colored(' you have chosen ', 'cyan') + colored(f'{textAskpre}', 'red', attrs=['bold', 'underline']))
+                        
 
                 autho()
                 
-
+        print(colored(f'\n ----------- \n checking... \n -----------', 'magenta', attrs=['dark', 'bold']))
         webbrowser.open(str(protocol + page + addPreset + search))
 
         def endsff():
-            print(colored(f'\n ----------- \n checking... \n -----------', 'magenta', attrs=['dark', 'bold']))
             print(colored('\n ✅ program executed successfully ✅', 'green' , attrs= ['bold']))
         
         endsff()
