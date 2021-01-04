@@ -28,10 +28,10 @@ def websearch():
                         4: Insert the page url here, without the protocol since it (the protocol) will be added in the end, making the program work, dont forget the .com or .org, ect.
                         | ex: 'nameOfSite.com/org ect'. |
 
-                        -------------------------------------------------------------------------------------''', 'cyan'))
+                        -----------------------------------------------------------------------------------''', 'cyan'))
                         
 
-                helpdone = input(colored('\n ❔ done reading (press any key) ❔: ', 'cyan', attrs=['underline']))
+                helpdone = input(colored('\n ❔ done reading (enter) ❔: ', 'cyan', attrs=['underline']))
                 if helpdone:
                     pass
             help()
@@ -46,7 +46,7 @@ def websearch():
         protobypass = 0
         while protobypass == 0:
             global protocol
-            protocol = input('\n web protcol(do protohelp for help on valied protocols): ')
+            protocol = input('\n web protcol(do protohelp for help on valid protocols): ')
             if protocol == '':
                 print(colored('\n ❌ please enter web protocol ❌', 'red'))
                 protobypass = 0
@@ -73,7 +73,7 @@ def websearch():
                             while askprebypass == 0:
                                 listprint = [(key) for key in lpresets.keys()]
                                 global askpre
-                                askpre = input(colored(f'\n name of presets:' + '\n' + str(colored(' '+', '.join(listprint)+ ' ', 'magenta', attrs=['underline', 'bold'])) + '\n preset: ', 'magenta'))
+                                askpre = input(colored(f'\n name of chooseable presets:' + '\n' + str(colored(' '+', '.join(listprint)+ ' ', 'magenta', attrs=['underline', 'bold'])) + '\n preset: ', 'magenta'))
                                 if askpre not in lpresets.keys():
                                     print(colored(f'\n ❌ sorry, this preset does not exist \n choose another one ❌: ', 'red'))
                                     presetbypass = 1
