@@ -3,7 +3,8 @@ from simple_colors import *
 from termcolor import colored
 
 
-lpresets = {'youtube search' : '/results?search_query='}
+lpresets = {'youtube search' : '/results?search_query=',
+            'stack overflow search' : '/search?q='}
 
 
 def websearch():
@@ -51,12 +52,31 @@ def websearch():
                 print(colored('\n ❌ please enter web protocol ❌', 'red'))
                 protobypass = 0
             elif protocol == 'protohelp':
-                print(colored('\n valid protocols (type these as they are here): \n http:/, https:/, www., dns. \n NOTE: some of these might not work on specific sites.', 'yellow', attrs=['underline']))
+                print(colored('\n valid protocols (type these as they are here): \n', 'yellow'),
+                      colored('\n http:/, https:/, www., dns.\n', 'yellow', attrs=['bold']),
+                      colored('\n NOTE: some of these might not work on specific sites. ', 'red', attrs=['bold', 'underline']))
                 protobypass = 0
-            else:
+            #valid protos    
+            elif protocol == 'http:/':
                 protobypass = 1
                 print(colored(f' ✅ {protocol} protocol chosen ✅', 'green'))
                 pass
+            elif protocol == 'https:/':
+                protobypass = 1
+                print(colored(f' ✅ {protocol} protocol chosen ✅', 'green'))
+                pass
+            elif protocol == 'www.':
+                protobypass = 1
+                print(colored(f' ✅ {protocol} protocol chosen ✅', 'green'))
+                pass
+            elif protocol == 'dns.':
+                protobypass = 1
+                print(colored(f' ✅ {protocol} protocol chosen ✅', 'green'))
+                pass
+            #-
+            else:
+                print(colored(f''' ❌ {protocol} is not a valid protocol, type 'protohelp' for valid protocols ❌''', 'red'))
+                protobypass = 0
 
             if protobypass == 1:
                 def presets():
@@ -75,7 +95,7 @@ def websearch():
                                 global askpre
                                 askpre = input(colored(f'\n name of chooseable presets:' + '\n' + str(colored(' '+', '.join(listprint)+ ' ', 'magenta', attrs=['underline', 'bold'])) + '\n preset: ', 'magenta'))
                                 if askpre not in lpresets.keys():
-                                    print(colored(f'\n ❌ sorry, this preset does not exist \n choose another one ❌: ', 'red'))
+                                    print(colored(f'\n ❌ sorry, this preset does not exist (yet) \n choose another one ❌: ', 'red'))
                                     presetbypass = 1
                                     askprebypass = 0
                                     presetchoosen = 0        
@@ -83,9 +103,14 @@ def websearch():
                                 elif askpre in lpresets.keys():
                                     textAskpre = askpre
                                     #-
+                                    global search
+
                                     if askpre == 'youtube search':
                                         askpre = 0
-                                        global search
+                                        search = input(colored('\n what do you want to search: ', 'magenta', attrs=['bold']))
+
+                                    if askpre == 'stack overflow search':
+                                        askpre = 1
                                         search = input(colored('\n what do you want to search: ', 'magenta', attrs=['bold']))
 
                                     #-
