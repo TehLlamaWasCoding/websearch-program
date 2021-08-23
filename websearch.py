@@ -54,7 +54,7 @@ def websearch():
                 protobypass = 0
             elif protocol == 'protohelp':
                 print(colored('\n valid protocols (type these as they are here): \n', 'yellow'),
-                      colored('\n http:/, https:/, www., dns.\n', 'yellow', attrs=['bold']),
+                      colored('\n http:/ | https:/ | www. | dns.\n', 'yellow', attrs=['bold']),
                       colored('\n NOTE: some of these might not work on specific sites. ', 'red', attrs=['bold', 'underline']))
                 protobypass = 0
             #valid protos    
